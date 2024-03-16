@@ -1,0 +1,17 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development settings
+.env
+
+# Django development server auto-generated files
+db.sqlite3
+*.sqlite3
+*.db
+
+# Static files
+/static/
+*.css
+*.js
