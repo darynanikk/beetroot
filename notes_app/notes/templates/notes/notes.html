@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+<title>
+    {% block title %}
+    Notes with Categories
+    {% endblock %}
+</title>
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'notes/styles.css' %}">
+{% endblock %}
+<body>
+    {% block content %}
+    <div class="container">
+        <h1>My Notes</h1>
+        <div class="notes">
+            <div class="note-cards">
+                {% for note in latest_notes %}
+                <div class="note-card">
+                    <h3>{{ note.title }}</h3>
+                    <p>{{ note.text }}</p>
+                    {% if note.categories.all %}
+                    <div class="categories">
+                        {% for category in note.categories.all %}
+                        <span class="category">{{ category.title }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
