@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<title>
+    {% block title %}
+    Notes with Categories
+    {% endblock title %}
+</title>
+<body>
+    {% block content %}
+        <h2>Welcome in My Notes app!</h2>
+        <div>
+            <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+            <span class="navbar-text">Logged in as {{ user.username }} |
+            <a href="{% url 'index' %}">View Notes</a>
+            </span>
+            <li class="nav-item">
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+    {% endblock content %}
+</body>

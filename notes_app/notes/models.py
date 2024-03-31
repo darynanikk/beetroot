@@ -1,7 +1,6 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-
-# Create your models here.
 
 class Category(models.Model):
     title = models.CharField(max_length=225)
@@ -14,6 +13,7 @@ class Note(models.Model):
     title = models.CharField(max_length=225)
     text = models.TextField()
     reminder = models.DateTimeField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes", null=True)
     categories = models.ManyToManyField(Category, related_name="notes")
 
     def __str__(self):

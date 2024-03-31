@@ -3,12 +3,17 @@
 <title>
     {% block title %}
     Notes with Categories
-    {% endblock %}
+    {% endblock title %}
 </title>
 <body>
     {% block content %}
     <div class="container">
-        <h1>My Notes</h1>
+    <h1>My Notes</h1>
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    </span>
         <button type="button" class="btn btn-primary">
             <a href="{% url 'create-note' %}" class="create-note-link">Create Note</a>
         </button>
@@ -18,6 +23,9 @@
                 <div class="note-card">
                     <h3>{{ note.title }}</h3>
                     <p>{{ note.text }}</p>
+                    {% if user.username %}
+                        <p>Created by {{ user.username }}</p>
+                    {% endif %}
                     <div class="button-container">
                         <form method="POST" action="{% url 'delete_note' note.id %}" class="action-form">
                             {% csrf_token %}
@@ -43,5 +51,5 @@
             </div>
         </div>
     </div>
-    {% endblock %}
+    {% endblock content %}
 </body>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Create new note{% endblock %}
+{% block title %}Create new note{% endblock title %}
 {% block content %}
 <form method="post" class="note-form">
     {% csrf_token %}
@@ -11,4 +11,4 @@
     {% endfor %}
     <button type="submit" class="btn btn-primary">Update Note</button>
 </form>
-{% endblock %}
+{% endblock content %}
